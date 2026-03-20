@@ -6,15 +6,48 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   title: "Redesign - Designs.md Library for Google Stitch",
   description:
-    "Open-source library of design specifications for AI tools. Copy, download, and use with your favorite AI design assistants.",
+    "Open-source library of design specifications for Google Stitch and other AI tools. Copy, download, and use with your favorite AI design assistants.",
+  keywords: [
+    "Google Stitch",
+    "Stitch designs",
+    "Stitch UI",
+    "AI design assistant",
+    "Designs.md",
+    "Google Stitch templates",
+    "Design specifications",
+    "AI UI generator",
+    "Google Workspace Stitch",
+  ],
+  authors: [{ name: "Redesign Contributors" }],
+  creator: "Redesign",
+  publisher: "Redesign",
+  applicationName: "Redesign for Google Stitch",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://stitchredesign.com",
+  },
   openGraph: {
     title: "Redesign - Designs.md Library for Google Stitch",
     description:
-      "Open-source library of design specifications for AI tools. Copy, download, and use with your favorite AI design assistants.",
+      "Open-source library of design specifications for Google Stitch and other AI tools. Copy, download, and use with your favorite AI design assistants.",
     url: "https://stitchredesign.com",
+    siteName: "Redesign for Google Stitch",
     images: [
       {
         url: "https://stitchredesign.com/redesign-logo-white.webp",
+        width: 1200,
+        height: 630,
+        alt: "Redesign Logo for Google Stitch",
       },
     ],
     type: "website",
@@ -23,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Redesign - Designs.md Library for Google Stitch",
     description:
-      "Open-source library of design specifications for AI tools. Copy, download, and use with your favorite AI design assistants.",
+      "Open-source library of design specifications for Google Stitch and other AI tools. Copy, download, and use with your favorite AI design assistants.",
     images: ["https://stitchredesign.com/redesign-logo-white.webp"],
   },
 };

@@ -18,15 +18,16 @@ function extractDescription(content: string): string {
       return trimmed.slice(0, 160) + (trimmed.length > 160 ? '...' : '')
     }
   }
-  return 'Design specification for AI tools.'
+  return 'Design specification for Google Stitch and AI tools.'
 }
 
 function generateTechArticleSchema(design: Design, description: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
-    headline: design.slug,
+    headline: `${design.slug} for Google Stitch`,
     description,
+    keywords: `${design.slug}, Google Stitch, AI design assistant, Stitch UI, Designs.md`,
     url: `https://stitchredesign.com/design/${design.slug}`,
     datePublished: designsData.generatedAt,
     dateModified: designsData.generatedAt,
@@ -84,17 +85,33 @@ export async function generateMetadata({
   }
 
   const description = extractDescription(design.content)
-  const title = `${design.slug} - Redesign`
+  const title = `${design.slug} - Redesign for Google Stitch`
   const url = `https://stitchredesign.com/design/${design.slug}`
 
   return {
     title,
     description,
+    keywords: [
+      design.slug,
+      'Google Stitch',
+      'Stitch designs',
+      'AI design assistant',
+      'Stitch ui template',
+      'Designs.md',
+    ],
     openGraph: {
       title,
       description,
       url,
-      images: [{ url: 'https://stitchredesign.com/redesign-logo-white.webp' }],
+      siteName: 'Redesign for Google Stitch',
+      images: [
+        {
+          url: 'https://stitchredesign.com/redesign-logo-white.webp',
+          width: 1200,
+          height: 630,
+          alt: `${design.slug} Design for Google Stitch`,
+        },
+      ],
       type: 'article',
     },
     twitter: {
