@@ -1,10 +1,22 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Fuse from "fuse.js";
 import { MagnifyingGlassIcon, GithubLogoIcon } from "@phosphor-icons/react";
-import designsData from "@/generated/designs.json";
 import type { Design } from "@/types/design";
+
+interface DesignsData {
+  designs: Design[];
+}
+
+const fetchDesigns = async (): Promise<DesignsData> => {
+  const response = await fetch("/api/designs");
+  if (!response.ok) {
+    throw new Error("Failed to fetch designs");
+  }
+  return response.json();
+};
 
 const MAX_QUERY_LENGTH = 200;
 
@@ -28,6 +40,13 @@ const softwareAppSchema = {
 export default function HomePage() {
   const [query, setQuery] = useState("");
 
+  const { data, isLoading, error } = useQuery<DesignsData>({
+    queryKey: ["designs"],
+    queryFn: fetchDesigns,
+    staleTime: 2 * 60 * 1000,
+    gcTime: 5 * 60 * 1000,
+  });
+
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     if (value.length <= MAX_QUERY_LENGTH) {
@@ -43,7 +62,9 @@ export default function HomePage() {
   };
 
   const fuse = useMemo(() => {
-    const searchableItems = designsData.designs.map((design) => ({
+    if (!data?.designs) return null;
+
+    const searchableItems = data.designs.map((design: Design) => ({
       ...design,
       tokens: getSearchTokens(design.slug),
     }));
@@ -53,16 +74,34 @@ export default function HomePage() {
       threshold: 0.3,
       includeScore: true,
     });
-  }, []);
+  }, [data]);
 
   const results = useMemo(() => {
-    if (!query.trim()) return designsData.designs;
-    return fuse.search(query.toLowerCase()).map((r) => r.item);
-  }, [query, fuse]);
+    if (!data?.designs) return [];
+    if (!query.trim()) return data.designs;
+    if (!fuse) return data.designs;
+    return fuse.search(query.toLowerCase()).map((r) => r.item as Design);
+  }, [query, fuse, data]);
 
   const getDesignUrl = (design: Design): string => {
     return `/design/${design.slug}`;
   };
+
+  if (isLoading) {
+    return (
+      <main className="py-16 md:py-24 flex flex-col gap-8">
+        <div className="text-center text-text-secondary">Loading designs...</div>
+      </main>
+    );
+  }
+
+  if (error) {
+    return (
+      <main className="py-16 md:py-24 flex flex-col gap-8">
+        <div className="text-center text-red-500">Error loading designs. Please try again later.</div>
+      </main>
+    );
+  }
 
   return (
     <main className="py-16 md:py-24 flex flex-col gap-8">
@@ -126,7 +165,7 @@ export default function HomePage() {
       </section>
 
       <section className="flex flex-col w-full">
-        {results.map((design) => (
+        {results.map((design: Design) => (
           <a
             key={design.slug}
             href={getDesignUrl(design)}

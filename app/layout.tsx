@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import QueryProvider from "./providers/QueryProvider";
 
 export const metadata: Metadata = {
   title: "Redesign - Designs.md Library for Google Stitch",
@@ -19,8 +20,8 @@ export const metadata: Metadata = {
     "Google Workspace Stitch",
   ],
   authors: [{ name: "Redesign Contributors" }],
-  creator: "Redesign",
-  publisher: "Redesign",
+  creator: "Siddhanta Chandra",
+  publisher: "Siddhanta Chandra",
   applicationName: "Redesign for Google Stitch",
   robots: {
     index: true,
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "Redesign for Google Stitch",
     images: [
       {
-        url: "https://stitchredesign.com/redesign-logo-white.webp",
+        url: "https://stitchredesign.com/OG-1200x630.png",
         width: 1200,
         height: 630,
         alt: "Redesign Logo for Google Stitch",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     title: "Redesign - Designs.md Library for Google Stitch",
     description:
       "Open-source library of design specifications for Google Stitch and other AI tools. Copy, download, and use with your favorite AI design assistants.",
-    images: ["https://stitchredesign.com/redesign-logo-white.webp"],
+    images: ["https://stitchredesign.com/OG-1200x630.png"],
   },
 };
 
@@ -98,11 +99,13 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
-        <Header />
-        <div className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {children}
-        </div>
-        <Footer />
+        <QueryProvider>
+          <Header />
+          <div className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            {children}
+          </div>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );
