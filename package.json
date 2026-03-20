@@ -1,0 +1,32 @@
+{
+  "name": "my-app",
+  "private": true,
+  "scripts": {
+    "dev": "bun run generate && next dev --turbopack",
+    "build": "bun run generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate": "bun scripts/generate-index.ts"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "fast-glob": "^3.3.3",
+    "fuse.js": "^7.1.0",
+    "next": "^16.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "rehype-sanitize": "^6.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^10.0.3",
+    "eslint-config-next": "^16.2.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.2"
+  }
+}

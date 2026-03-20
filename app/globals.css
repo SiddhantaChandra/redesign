@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-text-primary: #f0f0f0;
+  --color-text-secondary: #747474;
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #151515;
+}
+
+:root,
+.dark {
+  --background: #050505;
+  --foreground: #f0f0f0;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
