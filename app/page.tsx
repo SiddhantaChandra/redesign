@@ -65,7 +65,7 @@ export default function HomePage() {
 
   return (
     <main className="py-16 md:py-24 flex flex-col gap-8">
-      <section className="grid grid-cols-[2fr_1.5fr] items-center">
+      <section className="lg:grid lg:grid-cols-[2fr_1.5fr] items-center">
         <div className="flex-1 max-w-xl">
           <p className="text-text-primary text-sm uppercase tracking-widest font-medium mb-4">
             Open Source Design Library for Google Stitch
@@ -78,7 +78,7 @@ export default function HomePage() {
             />
           </div>
         </div>
-        <div>
+        <div className="mt-8 lg:mt-0">
           <p className="text-text-secondary text-lg leading-relaxed">
             A curated collection of design specifications. Copy or download any
             Designs.md and use it with your favorite AI tools to jumpstart your
